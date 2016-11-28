@@ -1,0 +1,931 @@
+// alert('hello');
+
+/*
+( parentheses )
+[ brackets ] "square brackets"
+{ braces } "curly brackets"
+*/
+
+// All conditions must boil down to simply true or false
+
+// Curly brackets group code blocks, that's all they do
+
+// if(a = b) {
+    // always true!
+// }
+
+// score = score + 10 
+// is the same as
+// score += 10
+// += is a single operator, so you can't put a space in between
+
+
+/*
+strict equality operator
+
+This code will return the first alert:
+    var a = 5;
+    var b = "5";
+    
+    if (a == b) {
+        alert("Yes, they're equal");
+    } else {
+        alert("They are NOT equal");
+    }
+
+
+This code will return the second alert:
+    var a = 5;
+    var b = "5";
+    
+    if (a == b) {
+        alert("Yes, they're equal");
+    } else {
+        alert("They are NOT equal");
+    }
+*/
+
+
+/*
+Unary postfix vs unary prefix
+
+// a = a - 1 
+// same as 
+// a--
+// same as
+// --a 
+
+// or is it?
+
+var a = 5 
+alert(++a); // "change 'a' to 6, and then show the alert msg"
+alert(a++); // "show the alert message, then change 'a' to 6"
+
+The end result is the same, the variable a= 6, but the message that we popped was different, and this is one of those little things that can cause bugs.
+
+Most of the operators are binary operators, meaning there's sth to the left & sth to the right (a + b)
+
+Unary works on one piece (++,--)
+Binary works on two pieces (+,-,%)
+Ternary works on three pieces (condition? true : false) (a mini if-else statement!)
+
+... So I tend to only use the plus plus and the minus minus on their own statements by themselves. Then it doesn't matter. I know that when I have executed that line of code it's been incremented or decremented.
+
+var playerOne = 500;
+var playerTwo = 600;
+
+    // sometime later
+    var highScore;
+    
+    if (playerOne > playerTwo) {
+        highScore = playerOne;
+    }
+    else {
+        highScore = playerTwo;
+    }
+
+    // alternative to the above:
+    var highScore = (playerOne > playerTwo) ? playerOne : playerTwo;
+
+*/
+
+/*
+WORKING WITH LOOPS
+
+var a = 1;
+if (a < 10) {
+    console.log(a);
+}
+// replace 'if' with 'while' and you have an infinite loop
+
+// Another example of infinite loop and how to fix it:
+
+// 1. Infinite loop:
+var a = 1;
+while (a < 10) {
+    console.log(a);
+}
+
+// 2. How to fix it?
+var a = 1;
+while (a < 10) {
+    console.log(a);
+    a++;
+}
+
+DO WHILE
+With do...while we move the condition to the end.
+
+var a = 10;
+Compare these 2, side by side:
+
+while (a < 10) {        | do {
+    console.log(a);     |   console.log(a);
+    a++;                | } while (a < 10);
+}
+
+SET UP THE INDEX, 
+CHECK THE CONDITION,
+INCREMENT THE INDEX:
+
+var i = 1; // set up
+
+while (i < 10) { // check
+  // do stuff
+  // do stuff
+  // do stuff
+  // etc...
+  i++; // increment the index
+}
+
+for (   var i = 1;  // set up the index
+        i < 10;     // check the condition
+        i++;        // increment the index
+) {
+    // do stuff, do stuff, ...
+}
+
+This is very readable because everything about the loop is right there at the top. You don't have to look outside the loop for the index, nor schan inside the loop for the increment:
+
+for ( var i = 1; i < 10; i++) {
+    // do stuff, do stuff, etc...
+}
+
+BREAK
+-----
+
+for ( var i = 1; i < 5000; i++ ) {
+    // do stuff, do stuff
+    if (i == 101) {
+        break;
+    }
+    // do stuff
+}
+// break jumps out of the loop
+
+CONTINUE
+--------
+
+Well, as we move through the code, if I check this if statement and my counter divided by 5 leaves a remainder of 0, I'll hit that 'continue'; but if it isn't, I will just jump straight ahead and keep gogin on the second part of the loop.
+
+for ( var i = 1; i < 5000; i++ ) {
+    // do stuff
+    if (i % 5 == 0) {
+        continue;
+    }
+    // do second set of stuff
+    // do second set of stuff
+}
+
+Now at some point we will hit the end of the for block and jump back.
+We will check the for condition, we will start processing, but if ever at any point I actually hit the word continue, that doesn't mean jump out of the loop it means jump back up and check the condition again.
+
+We are not done with the entire loop, but we are done with it this time around.
+
+So continue moves us back up to the top. Break moves us out beyond the bottom of the loop.
+
+CREATING FUNCTIONS
+------------------
+
+We surround any piece of code in curly brackets to say where the fn starts and ends.
+{
+console.log('We're in the function!)
+// loops, if statements, anything!
+}
+
+We need to say what it is:
+function
+{
+ console.log("We're in the function!";
+ // loops, if statements, anything!
+}
+
+And because we could have hundreds of these, we also give it a name:
+function calculateScore {
+    console.log("We're in the function!");
+    // loops, if statements, anything!
+}
+
+And then after the name of the function we need to have opening and closing parentheses. These say whether this function expects to have data passed into it (called 'parameters'). Empty parentheses means no, it doesn't.
+
+function myFunction() {
+    console.log("We're in the function!");
+    // loops, if statements, anything!
+}
+
+Now after the function is declared, we can call it.
+
+function myFunction() {
+    console.log("We're in the function!");
+    // loops, if statements, anything!
+}
+// when needed to be used:
+myFunction();
+ 
+If it's in a function, it won't run (execute) until you call it.
+
+It's a best practice to define your functions before you call them.
+
+Example, whatever is passed in will be multiplied together, and the result will be logged out:
+
+function myFunction( x, y ) {
+    var myVar = x * y;
+    console.log(myVar);
+}
+// and when needed, I can call it:
+myFunction(123, 124);
+
+Function can return information, as well as get it passed in, and I can do one or the other, or both, or neither:
+
+function myFunction(x,y) {
+    var myVar = x * y;
+    console.log(myVar);
+    // we can return values
+    return myVar;
+}
+
+Now I can create a new variable and set it equal to whaever is returend from passing in the numbers 6 and 9 into my function.
+
+If a function does return a value and you don't do anything with it, you are just calling the function. That will just be ignored.
+If you pass in too many parameters - they get ignored.
+Too few - they get undefined.
+
+Scope of a variable simply means wehere is this variable visible?
+
+function simpleFunction() {
+    // lots of code
+    var foo = 500;
+    // lots of code
+    console.log(foo); // 500
+}
+simpleFunction(); // gets executed
+console.log(foo); // outside of the function, foo doesn't exist!
+
+var inside a fn = local variable
+var outside a fn = global variable
+
+var foo; // GLOBAL VAR!
+function simpleFunction() {
+    // lots of code
+    foo = 500; // I don't need to define it again, so I am not using the word var.
+    console.log(foo); // 500
+}
+
+simpleFunction();
+console.log(foo); // 500 (it's the same variable)
+
+ARRAYS
+======
+
+An array is a single variable that holds multiple values.
+
+var singleValue;
+singleValue = 99;
+
+var multipleValues = [];
+var multipleValues = new Array(); // arrays are objects
+
+All arrays in JS are dynamic.
+
+multipleValues.length
+
+Now the highest index is 4, but there are 5 elements in it, so the length is 5.
+
+var multipleValues = [30.20,10];
+multipleValues.reverse();
+
+.reverse(), .join(), .sort() are all methods of the array object
+
+WORKING WITH NUMBERS
+====================
+
+Internally, all JS numbers are 64-bit floating point numbers.
+
+var foo = '55';
+var myNumber = Number(foo);
+
+if ( isNaN(myNumber) ) {
+    console.log("It's not a number");
+}
+
+var x = 200.6;
+var y = Math.round(x);
+
+// double negative - if NOT NOT a number
+if ( !isNaN(myNumber) ) {
+    console.log("it IS a number");
+}
+
+var a = 200, b = 10000, c = 4;
+
+var biggest = Math.max(a,b,c);
+
+WORKING WITH STRINGS
+====================
+
+var phrase = "This is a simple phrase";
+
+console.log(phrase[0]);
+
+In a sense, strings can be treated as arrays of characters.
+
+var phrase = "This is a simple phrase";
+var words = phrase.split(" ");
+// It will actually create an array from our string:
+// words["This","is","a","simple","phrase"];
+
+var phrase = "We want a groovy keyword.";
+var position = phrase.indexOf("groovy");
+
+// if it's not found at all it will return '-1'
+if ( phrase.indexOf("DDDD") == -1) {
+    console.log("That word does not occur.");
+}
+
+Now, indexOf finds the first occurence of that term in the phrase. if it could occur multiple times and we want the last one, we can also ask for .lastIndexOf. Next, the same way that we have Split to split a string apart into an array, we also have the method called Slice; to allow us to slice out a particular piece of that string.
+
+var phrase = "Yet another phrase.";
+
+var segment = phrase.slice(6,11); // "other"
+
+var str1 = "aardvark";
+var str2 = "beluga";
+
+if (str1 < str2) { ... // true
+
+var str1 = "aardvark";
+var str2 = "Beluga"
+
+if (str1 < str2) { ... // false!
+
+var today = new Date(); // it's actually the time down to the millisecond
+today.getMonth();
+today.getFullYear();
+
+var y2k = new Date(2000,0,1); // year, month, day
+
+Internally, a date object is stored as the number of milliseconds since the 1st of January 1970.
+
+var y2k = new Date(2000,0,1,0,0,0); // year, month, day, hours, minutes, seconds
+
+var today = new Date();
+today.getMonth();       // returns 0-11
+today.getFullYear();    // YYYY (not zero-based)
+today.getYear();        // deprecated
+today.getMonth();       // 1-31 day of month
+today.getMonth();       // 0-6 day of week. 0 == Sunday
+
+var myDate = new Date(1906,11,9);
+console.log("You were born on: ", myDate.getDay() );
+
+today.getHours(); // 0-23
+today.getTime(); // miliseconds since 1/1/1970
+
+var date1 = new Date(2000,0,1);
+var date2 = new Date(2000,0,1);
+
+if ( date1 == date2 ) {... // false! Why?
+
+// What JS is doing is, it's looking at this comparison and going, are these the same object? Well not, they're actually not. They may internally have the same values, but it's not checking for that.
+
+It's realizing there are 2 different objects and saying this is false.
+
+We need a simpler way to compare them, the way we can compare numbers.
+
+Date().getTime returns milliseconds! So:
+
+if ( date1.getTime() == date2.getTime() ) { ... // true!
+
+
+WORKING WITH OBJECTS
+====================
+
+At its core, the idea of an object is really simple. It is JUST A CONTAINER with SOME DATA and SOME BEHAVIOR.
+
+An object just allows us to gather variables and functions that belong together and give them a name.
+
+var player = new Object();
+player.name = "Fred";
+player.score = 100;
+player.rank = 1;
+
+// shorthand for creating an object like above
+var player1 = { name: "Fred", score: 100; rank: 1 }
+var player2 = { name: "Sam", score: 200, rank: 5 }
+
+function playerDetails() {
+    // display information about each player
+}
+
+player1.logDetails = playerDetails;
+// EXPLANATION:
+// I'm going to say player1.logDetails. And you might think, well, where does that come from? I'm just making it up right now.
+// And I'm setting it equal to playerDetails, which is the name of the function. I'm not calling it here.
+// I'm just associating it with my player1 object.
+
+// And similarly, what I want to do is exactly the same thing with the player2 object.
+player2.logDetails = playerDetails;
+
+So what does this do? Well, now both of these objects actually have a method called logDetails, and if we call it, it will just reach through and call the playerDetails function.
+
+If I know this function is going to be associated with different objects, I can use the word "this" to refere to the current one.
+
+// create two objects
+var player1 = { name: "Fred", score: 10, rank: 1 }
+var player2= { name: "Sam", score: 20, rank: 2 }
+
+function playerDetails() {
+    // display information about each player
+    console.log(this.name);
+}
+player1.logDetails = playerDetails;
+player2.logDetails = playerDetails;
+
+// call it sometime, when needed
+player1.logDetails();
+player2.logDetails();
+
+JavaScript doesn't have formal classes as other object-oriented languages do, but you can emulate the same effect using a normal function and something called a prototype.
+
+UNDERSTANDING THE DOCUMENT OBJECT MODEL
+=======================================
+
+I consider knowing your way around the DOM to be the single most important skill for a JavaScript programmer to develop.
+
+The DOM is an agreed-upon set of terms (model), that describe exactly how to interact with the pieces (objects) of the web page (document).
+
+It's not a language. It's an idea. A convention.
+
+NODES AND ELEMENTS
+==================
+
+There are 12 NODE TYPES in the DOM.
+
+But we're really interested in only 3: ELEMENT, ATTRIBUTE, TEXT.
+
+Node.ELEMENT_NODE == 1
+Node.ATTRIBUTE_NODE == 2
+Node.TEXT_NODE == 3
+
+Now, the idea that the text node is actually separate from the element might sound nitpicking, but it leads to quite a common mistake, that when you have element nodes such as paragraphs, or list items, or H1 tags, they do not directly contain that text.
+Officially speaking, according to the DOm, you have this text node that contains the text of a paragraph, or a text node that contains the text of a list item or of a heading.
+
+document.getElementById("someId");
+
+var myElement = document.getElementById("abc");
+
+And what we're doing here is we're creating a variable that is really a HANDLE to that place in the DOM.
+
+We can then use that variable, in this case I called it myElement, to read properties of the element. 
+
+This variable is not a detached copy of the one element; it's more like a pathway into this particular place in the DOM.
+
+document.getElementsByTagName("a");
+// remember, "an array is a single variable with multiple values"
+
+var myListItems = document.getElementsByTagName("li");
+
+var mainTitle = document.getElementById("mainTitle");
+    // And the question is, now what? Well, I have this variable which represents the object, the element object, and like all objects, like dates, like arrays, like even strings, we have things that we can ask for them.
+
+console.log( "This is an element of type: ", mainTitle.nodeType);
+console.log("the Inner HTML is: ", mainTitle.innerHTML );
+console.log("Child nodes: ", mainTitle.childNodes.length);
+
+var myListItems = document.getElementsByTagName("li");
+var myFirstList = document.getElementsById("abc");
+var limitedList = myFirstList.getElementsByTagName("li");
+
+CHANGING DOM ELEMENTS
+=====================
+
+Step#1: var x = "get the element";
+You need that variable to be a handle on the element. Cuz element comes first.
+
+To change an attribute of an element: once we've got an element we can use getAttribute and setAttribute.
+myElement.getAttribute("align"); // name - in quotes
+myElement.setAttribute("align", "left"); // "name", "value"
+
+It's a very easy task to just change the attributes of an element that you have a handle to.
+H5: <div id="mainContent">
+JS: var mainContent = document.getElementById("mainContent");
+    mainContent.setAttribute("align", "right");
+    
+innerHTML - read or change the contents of any HTML element.
+
+var allContent = document.getElementsByTagName("body");
+console.log(allContent.innerHTML); // WEBCRAWLER?
+
+CREATING DOM ELEMENTS
+=====================
+
+1. CREATE the element ( createElement )
+2. ADD it to the document (appendChild)
+
+var myNewElement = document.createElement("li"); // creates it
+myElement.appendChild(myNewElement); // adds it
+
+After we've created the element itself (createElement, appendChild),
+we then create a text node (createTextNode).
+
+Complete code:
+// NOT WORKING!
+var myElement = document.getElementsByTagName("body");
+
+var myNewElement = document.createElement("li");
+myElement.appendChild(myNewElement);
+var myText = document.createTextNode("New list item text");
+myNewElement.appendChild(myText);
+
+// WORKING!
+var node = document.createElement('div');
+node.setAttribute('data-foo', 'bar');
+var attr = node.getAttributeNode('data-foo');
+console.log(attr.name); // prints 'data-foo'
+console.log(attr.value); // prints 'bar'
+console.log(typeof attr); // prints 'object'
+
+ANOTHER EXAMPLE:
+//create the elements
+var newHeading = document.createElement("h1");
+var newParagraph = document.createElement("p");
+
+//to add content, either use innerHTML
+newHeading.innerHTML = "Did you know?"
+newParagraph.innerHTML = "California produces over 17 million whatevers a day"
+
+// OR create child nodes manually
+var h1Text = document.createTextNode("Did you know?");
+var paraText = document.createTextNode("California produces");
+//and add them as child nodes to the new elements
+newHeading.appendChild(h1Text);
+newParagraph.appendChild(paraText);
+
+//and we still need to add them to the document!
+document.getElementById("trivia").appendChild(newHeading);
+document.getElementById("trivia").appendChild(newParagraph);
+
+Instead of just pointin to the parent element and saying appendChild, we also have the choice of insertBefore:
+
+parent.insertBefore(newElement, existingElement);
+
+TO NOT APPEND IT TO LAST-CHILD:
+
+STEP#1  var myNewElement = document.createElement("li");
+STEP#2  // grab hold of the variable that points to the 2nd list item (I'll do it by calling getElementsByTagName)
+var secondItem = myElement.getElementsByTagName("li")[1];
+STEP#3 insert it at the 2nd position
+myElement.insertBefore(myNewElement, secondItem);
+
+(Instead of appendChild, I call myElement.insertBefore, and the 2 pieces of information I give it is what's the new element and
+what's the element you want to insert it before - in this case, before secondItem)
+
+WORKING WITH EVENTS AND EVENT LISTENERS
+
+Events are happening all the time. You don't write events, you write event listeners, or event handlers.
+
+3 WAYS TO REACT TO EVENTS IN JAVASCRIPT
+#1 THE SIMPLEST & UGLIEST: write JS directly into html: 
+    <button onclick="console.warn('Hello, world')">Click me to console log hello world</button>
+
+Make anonymous function (the reason why do it):
+this about the reason for a function. We usually use a function to wrap us a bunch of code and give it a name so we can call it later. Well, here, we're still using the work function to wrap up a bunch of code -- whatever is in between the opening and closing curly braces -- but we don't have to give it a name because we're saying exactly when this gets executed, which is when they click myElement:
+
+myElement.onclick = function() {
+    // your event handler code
+    // ...
+};
+
+People get very puzzled because they think "When do I need a semicolon. Do I put it at the end of a function or don't I put put it at the end of a function?". Well, we're not putting a semi colon because it's a function, we're putting it there because it's a statement. We're saying  myElement.onclick = this function.
+
+document.addEventListener('click', myFunction, false);
+
+A BIG BENEFIT OF addEventListener() is that you can add it to multiple events. You can add one event and have multiple listeners.
+removeEventListener()
+
+// IE8 and previous
+documend.attachEvent('onclick', myFunction); // it's the same concept, but it's a different name
+
+addCrossBrowserEventListener // my own helper method
+
+function addCrossBrowserEventListener (elementName, eventName, functionName) {
+    // does the addEventListener function exist?
+    if(elementName.addEventListener) {
+        // yes - use it
+        elementName.addEventListener(eventName, functionName, false);
+        return true;
+    } else {
+        // otherwise use attachEvent
+        elementName.attacheEvent("on" + eventName, functionName);
+    }
+}
+
+AVOID HANDWRITING FUNCTIONS THAT DEAL WITH X-BROWSER ISSUES. USE jQuery (or another lib) instead of writing you own X-browser code.
+
+WORKING WITH onClick and onLoad EVENTS
+======================================
+
+document.onclick = function() {
+    alert("You clicked somewhere in the document");
+}
+
+var myImage = document.getElementByID("mainImage");
+myImage.onclick = function() {
+    alert("You clicked the image!");
+};
+
+// instead of document.onclick, I can use any element.onclick
+
+THE WINDOW OBJECT IS THE FULL BROWSER WINDOW.
+The document object is small, encapsulated by the window object.
+
+WORKING WITH onBlur and onFocus EVENTS
+======================================
+
+Very useful when working with forms.
+
+H5: <input type="text" value="your email" name="email" id="email" tabindex="20">
+JS:
+var emailField = document.getElementById("email");
+
+emailField.onfocus = function() {
+    if ( emailField.value == "your email") {
+        emailField.value = "";
+    }
+};
+
+emailField.onblur = function() {
+    if ( emailField.value == "") {
+        emailField.value = "your email";
+    }
+};
+
+WORKING WITH TIMERS
+===================
+
+TIMERS aren't officially events in JavaScript.
+
+// Two methods for timers - setTimeout and setInterval (single / repeating)
+
+function simpleMessage() {
+    alert("This is just an alert box");
+}
+
+// settimeout is in milliseconds
+// setTimeout(simpleMessage, 5000);
+
+// building a slider
+var myImage = document.getElementById("mainImage");
+
+var imageArray = ["_images/overlook.jpg", "_images/winery_sign.jpg", "_images/lunch.jpg", "_images/bigSur.jpg", "_images/flag_photo.jpg", "_images/mission_look.jpg",]
+var imageIndex = 0;
+
+function changeImage() {
+    myImage.setAttribute("src", imageArray[imageIndex]);
+    imageIndex++;
+    if (imageIndex >= imageArray.length) {
+        imageIndex = 0;
+    }
+}
+
+// setInterval is also in milliseconds
+setInterval(changeImage, 5000);
+
+... 
+I didn't care before, but now I do. I'm going to create a new variable called intervalhandle. That's as good a name as any. It's just going to be a variable that connects me to a little bit of memory that says 'I understand what this interval is doing.'
+
+var intervalHandle = setInterval(changeImage,5000);
+myImage.onclick = function() {
+    clearInterval(intervalHandle);
+};
+
+Working with timers in JavaScript really boils down to those four methods: setTimeout to perform a single action after a delay, setInterval to repeat it after that delay and just keep on repeating, and their evil twins clearTimeout and clearInterval.
+
+BUILDING SMARTER FORMS
+======================
+
+What is the value of each form field? form element?
+What are the events that happen on form fields? on the whole form?
+
+ACCESSING FORM ELEMENTS
+
+document.forms.frmContact
+document.forms.frmContact.name
+
+Each form field has these events:
+MAIN EVENTS
+onfocus, onblur, onchange, onkeypress, onkeydown, onkeyup
+MAIN PROPERTY
+myTextField.value (input box value)
+
+There are field values and field events. There are also form events.
+
+Text field
+main property: myTextField.value
+main events: onfocus, onblur, onchange, onkeypress, onkeydown, onkeyup
+
+Check box
+main property: myCheckBox.checked // true or false
+main events: onclick, onchange
+
+Select that allows one selection or multiple selections
+main property: mySelect.type (select-one or select-multiple)
+               <select type="select-one"
+                       type="select-multiple"
+select-one
+mySelect.selectedIndex
+select-multiple
+mySelect.options[x].selected
+
+main events: onchange
+
+form
+mail event: onsumbit // "return false" !!!
+FORM = onsubmit event
+onsubmit
+return false;
+then do instant validation
+
+Rely on JS validation on the client, but do the validation on the server too.
+
+#PREVENT A FORM FROM BEING SENT
+When the document loads call the function prepareEventHandlers
+
+#HIDING AND SHOWING FORM SECTIONS
+@TODO (insert code here)
+
+9 UI ENHANCEMENT
+
+CSS AND JAVASCRIPT
+myElement.style.color = "red";
+
+CSS=HYPHENS     JS=camelCase:
+font-weight     fontWeight
+class           className // because class is a reserved word in JS
+
+myElement.className = "someCSSclass";
+
+#REMOVING AND APPLYING CSS CLASSES
+'Find the element, .className="example";'
+
+document.getElementByID("mainContent").className="example";
+
+vid 0902; !!!
+
+10 JAVASCRIPT BEST PRACTICES
+
+1. Naming conventions
+vars & fn() are camelCased
+
+1 word = lowercase
+
+looseVerbNounFormat
+- createElement
+- appendChild
+- getElementById etc
+
+if {
+    // code...
+}
+
+Preference & best practice
+- define your functions before they are called
+- in JS you don't have to do this, but you should
+
+JSLINT
+
+11 JAVASCRIPT LIBRARIES
+
+JavaScript is a small language.
+
+Every JS file you link to is a separate request the browser needs to make to the web server.
+Solution: combine jQuery with custom file?
+
+Why jQuery is better than vanilla JavaScript?
+
+Better targeting:
+VJS: document.getElementById("myDiv").className = "highlight";
+jQ:
+$("#myDiv").addClass("highlight");
+$(".someClass").addClass("highlight");      :first
+$("p").addClass("highlight");               :last
+$("a").addClass("highlight");               :contains()
+$("li").addClass("highlight");              :visible
+$("p.description").addClass("highlight");
+
+#INTRODUCTION TO JQUERY
+
+Google Search: Multithreading JS? (web workers)
+
+WE'VE STOPPED CHECKING FOR BROWSER DETECTION.
+WE'RE DOING FEATURE DETECTION INSTEAD.
+
+USING MODERNIZER JS
+
+-a js library
+- when included, you get additional 40 properties to use
+- used to test browsers:
+
+if(Modernizr.video) {
+    // yes - use HTML5 video
+} else {
+    // perhaps replace with Flash video
+}
+
+#USING STRICT MODE
+
+- PART OF ECMA5
+- a way to volunteer your code to be held to higher standards of ECMASRIPT
+- a way to prevent sloppy code
+
+JS TO AVOID
+
+document.write(...)
+browser sniffing
+eval:
+var a = "alert('";
+var b = "hello";
+var c = "');";
+eval(a+b+c); // a way to inject code into your JS by users
+
+    PSEUDO-PROTOCOLS:
+    <a href= "javascript:someFunction()">this</a>
+    pseudo, cuz it's expecting a real http(s), ftp, etc. protocol
+    
+    A preferrable way:
+    <a href="nojavascripthtml" onclick="someFunction(); return false;">this</a>
+    return false, i.e. "prevent default behavior of link"
+
+INTRO TO REGEX IN JS
+step1: create it
+step2: apply it to sth else
+
+var myRE = /hello/; // almost like creating a string variable, but instead of quotes, we're using forward slashes
+
+var myRE = /hello/; is a shorcut for this version:
+var myRE = new RegExp("hello");
+
+var myString = "bla bla bla"...
+if (myRE.test(myString)) {
+    alert("YES");
+}
+
+CREATING PATTERNS
+
+var myRE    = /^hello/;         // ^ at the start of a string
+            = /hello$/;         // $ at the end of a string
+            = /hel+o/;          // once or more (helo, hello, hellllo)
+            = /hel*o/;          // 0 or more (heo, helo, hello, helllo)
+            = /hel?o/;          // 0 or 1 (heo, helo) (not hello, helllo)...
+            = /hello/goodbye/   // either|or 
+            = /he..o/           // . any character
+            = /\wello/;         // \w alpha#ic or -
+            = /\bello/;         // \b word boundary (it means it would have to appear after a space or after a new line)
+            = /[crnld]ope/;     // [...] range of characters
+
+MORE COMPLEX PATTERNS
+
+looks for a valid zip code with optional US extension:
+/^[0-9]{5}({4}?$)/
+
+WORKING WITH AJAX
+=================
+Ajax is not a language!
+
+Ajax === JavaScript // it's just a very special use of it
+
+We don't want to hang the page while we wait, this is the asynchronous part of AJAX.
+
+CREATE THE REQUEST
+==================
+1. var myRequest = new XMLHttpRequest(); // this is the middle man btw the browser and the server
+But it has a cross-broser difference, so I first have to check if it exists:
+if(window.XMLHttpRequest){ // all others
+    myRequest = new XML
+// see the ajax folder!
+
+#WORKING WITH OBJECTS & PROTOTYPES
+==================================
+
+See the objects-and-prototypes folder
+
+CHAPTER 14: PUTTING IT ALL TOGETHER
+===================================
+
+#EXAMPLE: COUNTDOWN, ACCORDION, RESIZE (see folder: chapter14)
+
+LEARNING A PROGRAMMING LANGUAGE IS LIKE LEARNING TO PLAY DRUMS. THERE'S NO SUBSTITUTE FOR PRACTICE.
+
+The number of DOM elements is easy to test, just type in console:
+
+document.getElementsByTagName('*').length;
+
+WHERE TO GO FROM HERE?
+======================
+
+developer.mozilla.org
+
+
+            
+*/
+
